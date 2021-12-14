@@ -1,9 +1,14 @@
 <template>
-  <Tutorial />
+  <div>
+    <h1>Todo nuxt</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
 }
 </script>
+
+<style scoped>
+
+</style>
