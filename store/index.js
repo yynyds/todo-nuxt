@@ -5,6 +5,7 @@ export const state = () => ({
 export const mutations = {
   setToken(state, token) {
     state.token = token
+    this.$router.push('/')
   },
   clearToken(state) {
     state.token = null
@@ -12,8 +13,8 @@ export const mutations = {
 }
 
 export const actions = {
-  login({commit}) {
-    commit('setToken', 'test-token')
+  login({commit}, payload) {
+    commit('setToken', payload)
   },
   logout({commit}) {
     commit('clearToken')
