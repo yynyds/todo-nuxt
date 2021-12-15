@@ -5,9 +5,16 @@
     <ol>
       <li v-for="todo of todos" :key="todo.id">
         <div class="form-check">
-          <input :id="todo.id" class="form-check-input" type="checkbox" value="" :checked="todo.completed">
+          <input
+            :id="todo.id"
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            :checked="todo.completed"
+            @change="updateTask(todo.id)"
+          >
           <label class="form-check-label" :for="todo.id">
-            <a href="#" @click.prevent="moreInfoAboutTodo(todo)">{{todo.title}}</a>
+            <a href="#" :class="{isCompleted: todo.completed}" @click.prevent="moreInfoAboutTodo(todo)">{{todo.title}}</a>
           </label>
         </div>
       </li>
@@ -31,6 +38,16 @@ export default {
   methods: {
     moreInfoAboutTodo(todo) {
       this.$router.push(`/todos/${todo.userId}`)
+    },
+    updateTask(id) {
+      console.log(id)
+      const index = this.todos.findIndex(elem => {
+        return +elem.id === +id
+      })
+      console.log(index)
+      if (index) {
+        this.$store.dispatch('updateTask', index)
+      }
     }
   }
 }
@@ -40,5 +57,8 @@ export default {
 ol {
   max-height: 400px;
   overflow-y: auto;
+}
+.isCompleted {
+  text-decoration: line-through;
 }
 </style>
