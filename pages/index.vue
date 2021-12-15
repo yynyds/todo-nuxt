@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Todo nuxt</h1>
+    <hr>
   </div>
 </template>
 
