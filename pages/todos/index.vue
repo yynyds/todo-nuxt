@@ -40,13 +40,11 @@ export default {
       this.$router.push(`/todos/${todo.userId}`)
     },
     updateTask(id) {
-      console.log(id)
       const index = this.todos.findIndex(elem => {
         return +elem.id === +id
       })
-      console.log(index)
-      if (index) {
-        this.$store.dispatch('updateTask', index)
+      if (index || index === 0) {
+        this.$store.dispatch('todos/updateTask', index)
       }
     }
   }
