@@ -29,10 +29,16 @@ export default {
     if (store.getters['todos/todos'].length === 0) {
       await store.dispatch('todos/loadTodos')
     }
+    if (store.getters['users/users'].length === 0) {
+      await store.dispatch('users/loadUsers')
+    }
   },
   computed: {
     todos() {
       return this.$store.getters['todos/todos']
+    },
+    users() {
+      return this.$store.getters['users/users']
     }
   },
   methods: {
