@@ -15,6 +15,11 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: 'blue' },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -46,5 +51,12 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
+
+    }
+  },
 }

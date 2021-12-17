@@ -8,7 +8,6 @@ export const mutations = {
     this.$router.push('/')
   },
   clearToken(state) {
-    // this.$cake.remove('tokenAuth')
     state.token = null
   }
 }

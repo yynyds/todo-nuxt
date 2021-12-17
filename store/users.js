@@ -1,5 +1,6 @@
 export const state = () => ({
-  users: []
+  users: [],
+  localUser: null
 })
 
 export const mutations = {
@@ -14,6 +15,9 @@ export const mutations = {
       }
       return Object.assign(upd, newUser)
     })
+  },
+  setLocalUser(state, id) {
+    state.localUser = state.users.find(item => +item.id === +id)
   }
 }
 
@@ -28,9 +32,13 @@ export const actions = {
   },
   updateUser({commit}, newUser) {
     commit('updateUser', newUser)
+  },
+  findUserById({commit}, id) {
+    commit('setLocalUser', id)
   }
 }
 
 export const getters = {
-  users: state => state.users
+  users: state => state.users,
+  localUser: state => state.localUser
 }

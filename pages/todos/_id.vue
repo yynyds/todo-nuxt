@@ -2,7 +2,7 @@
   <section>
     <h1>Additional info about user</h1>
     <hr>
-    <form v-if="localUser" class="row g-3">
+    <form class="row g-3">
       <div class="col-auto">
         <label for="inputName" class="visually-hidden">Name</label>
         <input id="inputName" v-model="localUser.name" class="form-control" type="text" placeholder="Name">
@@ -46,23 +46,17 @@ export default {
   validate({params}) {
     return /^\d+$/.test(params.id)
   },
+  async asyncData({$axios, params}) {
+    const localUser = await $axios.$get('https://jsonplaceholder.typicode.com/users/' + params.id)
+    return {localUser}
+  },
   data: () => ({
-    localUser: null,
     userFreezed: null
   }),
   computed: {
-    users() {
-      return this.$store.getters['users/users']
-    },
     isEditedObject() {
       return this.deepEqual(this.localUser, this.userFreezed)
     }
-  },
-  beforeMount() {
-    this.localUser = Object.assign({}, this.users.find(item => {
-      return +item.id === +this.$route.params.id
-    }))
-    this.freezeObject()
   },
   methods: {
     deepEqual(x, y) {
@@ -97,6 +91,9 @@ export default {
     freezeObject() {
       this.userFreezed = Object.freeze(JSON.parse(JSON.stringify(this.localUser)))
     }
+  },
+  beforeMount() {
+    this.freezeObject()
   }
 }
 </script>
