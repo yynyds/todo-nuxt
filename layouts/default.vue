@@ -14,7 +14,7 @@
 <script>
 import Navbar from '../components/Navbar'
 export default {
-  // middleware: ['auth'],
+  name: "default",
   components: {
     Navbar
   },
