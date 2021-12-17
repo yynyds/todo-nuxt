@@ -36,6 +36,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    ['cookie-universal-nuxt', { alias: 'cake' }]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

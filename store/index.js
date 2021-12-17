@@ -8,6 +8,7 @@ export const mutations = {
     this.$router.push('/')
   },
   clearToken(state) {
+    // this.$cake.remove('tokenAuth')
     state.token = null
   }
 }
@@ -19,6 +20,9 @@ export const actions = {
   logout({commit}) {
     commit('clearToken')
   },
+  prefatorySetToken({commit}, payload) {
+    commit('setToken', payload)
+  }
 }
 
 export const getters = {

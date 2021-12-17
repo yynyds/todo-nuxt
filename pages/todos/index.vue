@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  middleware: ['auth'],
   async fetch({store}) {
     if (store.getters['todos/todos'].length === 0) {
       await store.dispatch('todos/loadTodos')

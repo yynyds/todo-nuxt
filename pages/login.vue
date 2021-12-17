@@ -28,7 +28,8 @@ export default {
   methods: {
     onSubmit() {
       if (this.username) {
-        this.$store.dispatch('login', this.username)
+        // this.$cake.set('tokenAuth', this.username, 200)
+        this.$store.dispatch('login', this.username) // this.$cake.get('tokenAuth')
       }
     }
   }
