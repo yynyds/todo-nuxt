@@ -7,7 +7,7 @@
       <h1>Login page</h1>
       <hr>
       <div class="form-group">
-        <input v-model="username" type="text" class="form-control">
+        <b-form-input v-model="username" placeholder="Enter your name"></b-form-input>
       </div>
 
       <p>
