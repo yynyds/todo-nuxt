@@ -42,20 +42,26 @@
 
 <script>
 export default {
-  middleware: ['auth'],
+  // middleware: ['auth'],
   validate({params}) {
     return /^\d+$/.test(params.id)
   },
-  async asyncData({$axios, params}) {
-    const localUser = await $axios.$get('https://jsonplaceholder.typicode.com/users/' + params.id)
-    return {localUser}
+  async asyncData({$axios, params, store}) {
+    // const localUser = await $axios.$get('https://jsonplaceholder.typicode.com/users/' + params.id)
+    // return {localUser}
+    const localUser = await JSON.parse(JSON.stringify(store.getters['users/users'].find(user => +user.id === +params.id)))
+    return { localUser }
   },
   data: () => ({
-    userFreezed: null
+    userFreezed: null,
+    localUser: null
   }),
   computed: {
     isEditedObject() {
       return this.deepEqual(this.localUser, this.userFreezed)
+    },
+    users() {
+      return this.$store.getters['users/users']
     }
   },
   methods: {
@@ -93,6 +99,7 @@ export default {
     }
   },
   beforeMount() {
+    // this.localUser = JSON.parse(JSON.stringify(this.users.find(user => +user.id === +this.$route.params.id)))
     this.freezeObject()
   }
 }

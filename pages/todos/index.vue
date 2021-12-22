@@ -63,11 +63,31 @@ export default {
         this.$store.dispatch('todos/updateTask', index)
       }
     },
+    async createNewTodo({todo, user}) {
+      const stringifyTodo = JSON.stringify({
+        userId: user.id,
+        title: todo,
+        completed: false})
+      try {
+        const newTodo = await this.$axios.$post(`https://jsonplaceholder.typicode.com/todos`, stringifyTodo, {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          }
+        })
+        console.log('newTodo', newTodo)
+        // this.$store.dispatch('users/updateUser', updatedUser)
+        // this.localUser = updatedUser
+        this.freezeObject()
+      } catch(err) {
+        console.log(err)
+      }
+    }
   },
   watch: {
     newTodo(val) {
       if (val) {
         console.log(val)
+        this.createNewTodo(val)
       }
     }
   }

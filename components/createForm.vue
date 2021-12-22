@@ -47,13 +47,14 @@ export default {
   name: 'createForm',
   data: () => ({
     user: {
+      id: null,
       name: 'Select name',
-      username: '',
-      email: '',
-      website: '',
-      companyName: ''
+      username: null,
+      email: null,
+      website: null,
+      companyName: null
     },
-    newTodo: ''
+    newTodo: null
   }),
   computed: {
     users() {
@@ -106,6 +107,7 @@ export default {
   methods: {
     createNewTodo() {
       if (this.simpleValidation) {
+        this.user.id = Math.floor(Math.random() * 10) + 1
         this.$emit('input', {todo: this.newTodo, user: this.user})
         this.resetForm()
       }
