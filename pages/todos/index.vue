@@ -28,7 +28,7 @@
 <script>
 import createTodo from '../../components/createForm'
 export default {
-  // middleware: ['auth'],
+  middleware: ['auth'],
   components: {
     createTodo
   },

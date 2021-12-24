@@ -43,8 +43,8 @@
 <script>
 export default {
   // middleware: ['auth'],
-  validate({params}) {
-    return /^\d+$/.test(params.id)
+  validate({params, store}) {
+    return store.getters['users/users'].length > 0 && /^\d+$/.test(params.id)
   },
   async asyncData({$axios, params, store}) {
     // const localUser = await $axios.$get('https://jsonplaceholder.typicode.com/users/' + params.id)
