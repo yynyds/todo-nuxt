@@ -67,7 +67,12 @@ export default {
           value: item.name,
           text: item.name
         }
-      })
+      }).reduce((unique, o) => {
+        if(!unique.some(obj => obj.value === o.value)) {
+          unique.push(o);
+        }
+        return unique;
+      },[])
     },
     userNames() {
       return this.users.map(item => {
@@ -75,7 +80,12 @@ export default {
           value: item.username,
           text: item.username
         }
-      })
+      }).reduce((unique, o) => {
+        if(!unique.some(obj => obj.value === o.value)) {
+          unique.push(o);
+        }
+        return unique;
+      },[])
     },
     userEmails() {
       return this.users.map(item => {
@@ -83,7 +93,12 @@ export default {
           value: item.email,
           text: item.email
         }
-      })
+      }).reduce((unique, o) => {
+        if(!unique.some(obj => obj.value === o.value)) {
+          unique.push(o);
+        }
+        return unique;
+      },[])
     },
     userWebsites() {
       return this.users.map(item => {
@@ -91,7 +106,12 @@ export default {
           value: item.website,
           text: item.website
         }
-      })
+      }).reduce((unique, o) => {
+        if(!unique.some(obj => obj.value === o.value)) {
+          unique.push(o);
+        }
+        return unique;
+      },[])
     },
     userCompanies() {
       return this.users.map(item => {
@@ -99,7 +119,12 @@ export default {
           value: item.company.name,
           text: item.company.name
         }
-      })
+      }).reduce((unique, o) => {
+        if(!unique.some(obj => obj.value === o.value)) {
+          unique.push(o);
+        }
+        return unique;
+      },[])
     },
     simpleValidation() {
       return this.user.name && this.user.username && this.user.email && this.user.website && this.user.company.name && this.newTodo
