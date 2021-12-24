@@ -54,7 +54,7 @@ export default {
   },
   data: () => ({
     userFreezed: null,
-    localUser: null
+    // localUser: null
   }),
   computed: {
     isEditedObject() {
