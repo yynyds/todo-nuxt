@@ -8,6 +8,9 @@ export const mutations = {
   },
   updateTask(state, index) {
     state.todos[index].completed = !state.todos[index].completed
+  },
+  setNewTodo(state, newTodo) {
+    state.todos.push(newTodo)
   }
 }
 
@@ -18,6 +21,9 @@ export const actions = {
   },
   updateTask({commit}, index) {
     commit('updateTask', index)
+  },
+  setNewTodo({commit}, newTodo) {
+    commit('setNewTodo', newTodo)
   }
 }
 

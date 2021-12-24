@@ -16,6 +16,9 @@ export const mutations = {
       return Object.assign(upd, newUser)
     })
   },
+  setNewUser(state, newUser) {
+    state.users.push(newUser)
+  },
   setLocalUser(state, id) {
     state.localUser = state.users.find(item => +item.id === +id)
   }
@@ -32,6 +35,9 @@ export const actions = {
   },
   updateUser({commit}, newUser) {
     commit('updateUser', newUser)
+  },
+  setNewUser({commit}, newUser) {
+    commit('setNewUser', newUser)
   },
   findUserById({commit}, id) {
     commit('setLocalUser', id)

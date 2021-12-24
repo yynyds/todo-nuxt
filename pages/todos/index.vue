@@ -50,6 +50,9 @@ export default {
     users() {
       return this.$store.getters['users/users']
     },
+    customID() {
+      return this.$store.getters['customCountID/id']
+    }
   },
   methods: {
     moreInfoAboutTodo(todo) {
@@ -64,18 +67,29 @@ export default {
       }
     },
     async createNewTodo({todo, user}) {
-      const stringifyTodo = JSON.stringify({
-        userId: user.id,
-        title: todo,
-        completed: false})
+      const stringifyUser = JSON.stringify(user)
       try {
+        const newUser = await this.$axios.$post(`https://jsonplaceholder.typicode.com/users`, stringifyUser, {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          }
+        })
+        console.log(newUser)
+        await this.$store.dispatch('customCountID/addCountID')
+        newUser.id = 10 + this.customID
+        await this.$store.dispatch('users/setNewUser', newUser)
+        const stringifyTodo = JSON.stringify({
+          userId: newUser.id,
+          title: todo,
+          completed: false})
         const newTodo = await this.$axios.$post(`https://jsonplaceholder.typicode.com/todos`, stringifyTodo, {
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           }
         })
+        newTodo.id = 200 + this.customID
+        await this.$store.dispatch('todos/setNewTodo', newTodo)
         console.log('newTodo', newTodo)
-        // this.$store.dispatch('users/updateUser', updatedUser)
         // this.localUser = updatedUser
         this.freezeObject()
       } catch(err) {

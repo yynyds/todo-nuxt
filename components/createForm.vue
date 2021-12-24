@@ -30,7 +30,7 @@
       </div>
       <div class="col-auto mb-3">
         <b-form-group label-size="md" label="Company name" label-for="user-company">
-          <b-form-select id="user-company" v-model="user.companyName" :options="userCompanies"></b-form-select>
+          <b-form-select id="user-company" v-model="user.company.name" :options="userCompanies"></b-form-select>
         </b-form-group>
       </div>
     </div>
@@ -47,12 +47,13 @@ export default {
   name: 'createForm',
   data: () => ({
     user: {
-      id: null,
-      name: 'Select name',
+      name: null,
       username: null,
       email: null,
       website: null,
-      companyName: null
+      company: {
+        name: null
+      }
     },
     newTodo: null
   }),
@@ -101,19 +102,27 @@ export default {
       })
     },
     simpleValidation() {
-      return this.user.name && this.user.username && this.user.email && this.user.website && this.user.companyName && this.newTodo
+      return this.user.name && this.user.username && this.user.email && this.user.website && this.user.company.name && this.newTodo
     }
   },
   methods: {
     createNewTodo() {
       if (this.simpleValidation) {
-        this.user.id = Math.floor(Math.random() * 10) + 1
+        // this.user.id = Math.floor(Math.random() * 10) + 1
         this.$emit('input', {todo: this.newTodo, user: this.user})
         this.resetForm()
       }
     },
     resetForm() {
-      this.user = {}
+      this.user = {
+        name: null,
+        username: null,
+        email: null,
+        website: null,
+        company: {
+          name: null
+        }
+      }
       this.newTodo = null
     },
   }
