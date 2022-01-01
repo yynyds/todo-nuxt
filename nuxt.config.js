@@ -19,6 +19,10 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: 'blue' },
+  target: 'static',
+  router: {
+    base: '/todo-nuxt/'
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
